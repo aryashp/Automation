@@ -2,10 +2,14 @@ version: 2.1
 
 skip_tags: true
 
+orbs:
+  win: circleci/windows@2.2.0
+
 jobs:
-  test:
-    docker:
-    - image: Visual Studio 2019
+  build:
+    executor:
+      name: win/default
+      shell: powershell.exe
 
     environment:
       github_access_token:
@@ -17,24 +21,24 @@ jobs:
       - checkout
       - run:
           name: install
-          command:
-            - cinst docfx
+          command: |
+            cinst docfx
 
           name: build_script
-          command: 
-            - dotnet restore
-            - dotnet build --configuration Release
+          command: | 
+            dotnet restore
+            dotnet build --configuration Release
           
           name: deploy_script
-          command:
-            - git config --global credential.helper store
-            - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
-            - git config --global user.email %github_email%
-            - git config --global user.name "aryashp"
-            - bash releaseDocs.sh
+          command: |
+            git config --global credential.helper store
+            ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
+            git config --global user.email %github_email%
+            git config --global user.name "aryashp"
+            bash releaseDocs.sh
 
 workflows:
   version: 2
   test:
     jobs:
-      - test  
+      - test         
