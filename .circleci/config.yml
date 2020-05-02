@@ -8,8 +8,6 @@ jobs:
     executor:
       name: win/default
       shell: powershell.exe
-    environment:
-      github_access_token: "c32f2349721a221b0fda9173359dc93db856dd9a"
     steps:
       - checkout
       - run: systeminfo
@@ -23,7 +21,7 @@ jobs:
             dotnet restore
             dotnet build --configuration Release
             git config --global credential.helper store
-            Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:b18ca83db96a4474c01d9c263ec0df232484fafb):x-oauth-basic@github.com`n"
+            Add-Content "$env:USERPROFILE\.git-credentials" "https://$($Token_key):x-oauth-basic@github.com`n"
             git config --global user.email "aryashp4iitk@gmail.com"
             git config --global user.name "aryashp"
             bash releaseDocs.sh
