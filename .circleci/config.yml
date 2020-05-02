@@ -14,24 +14,27 @@ jobs:
         aryashp4iitk@gmail.com
     
     steps:
-    - checkout
-    - run:
-        install:
-          - cinst docfx
+      - checkout
+      - run:
+          name: install
+          command:
+            - cinst docfx
 
-        build_script: 
-          - dotnet restore
-          - dotnet build --configuration Release
-        
-        deploy_script:
-          - git config --global credential.helper store
-          - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
-          - git config --global user.email %github_email%
-          - git config --global user.name "aryashp"
-          - bash releaseDocs.sh
+          name: build_script
+          command: 
+            - dotnet restore
+            - dotnet build --configuration Release
+          
+          name: deploy_script
+          command:
+            - git config --global credential.helper store
+            - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
+            - git config --global user.email %github_email%
+            - git config --global user.name "aryashp"
+            - bash releaseDocs.sh
 
 workflows:
   version: 2
   test:
     jobs:
-      - test 
+      - test  
