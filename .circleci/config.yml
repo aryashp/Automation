@@ -23,15 +23,13 @@ jobs:
     - checkout
     - run:
         install:
-        command: cinst docfx
+          - cinst docfx
 
-        build_script:
-        command: 
+        build_script: 
           - dotnet restore
           - dotnet build --configuration Release
         
         deploy_script:
-        command:
           - git config --global credential.helper store
           - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
           - git config --global user.email %github_email%
@@ -42,4 +40,4 @@ workflows:
   version: 2
   test:
     jobs:
-      - test 
+      - test
