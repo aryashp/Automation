@@ -4,7 +4,7 @@ set -e
 export VSINSTALLDIR="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
 export VisualStudioVersion="16.5.4"
 
-docfx ./docfx_project/docfx.json
+docfx docfx_project/docfx.json
 
 SOURCE_DIR=$PWD
 TEMP_REPO_DIR=$PWD/../Automation-gh-pages
