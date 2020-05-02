@@ -26,12 +26,14 @@ jobs:
           command: |
             cinst docfx
 
+      - run:
           name: build_script
           shell: powershell.exe
           command: | 
             dotnet restore
             dotnet build --configuration Release
-          
+
+      - run:    
           name: deploy_script
           shell: powershell.exe
           command: |
@@ -45,4 +47,4 @@ workflows:
   version: 2
   test:
     jobs:
-      - test
+      - test 
