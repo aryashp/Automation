@@ -7,12 +7,6 @@ jobs:
     docker:
     - image: Visual Studio 2019
 
-    clone_depth: 1
-
-    branches:
-      only:
-        - master
-
     environment:
       github_access_token:
         c1a3e6c00bf884b2fe6e640f40190b840fa350d6 
@@ -40,4 +34,4 @@ workflows:
   version: 2
   test:
     jobs:
-      - test
+      - test 
