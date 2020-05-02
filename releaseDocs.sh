@@ -25,6 +25,4 @@ cp -r $SOURCE_DIR/docfx_project/_site/* .
 echo "Push the new docs to the remote branch"
 git add . -A
 git commit -m "Update generated documentation"
-git remote add new-docs https://aryashp.$(Token_key)@github.com/aryashp/Automation-docs.git
-git push new-docs
 
