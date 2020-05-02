@@ -7,44 +7,45 @@ orbs:
 
 jobs:
   build:
-    executor:
-      name: win/default
-      shell: powershell.exe
+    test:
+      executor:
+        name: win/default
+        shell: powershell.exe
 
-    environment:
-      github_access_token:
-        c1a3e6c00bf884b2fe6e640f40190b840fa350d6 
-      github_email:
-        aryashp4iitk@gmail.com
-    
-    steps:
-      - checkout
-      - run: systeminfo
-      - run:
-          name: install
-          shell: powershell.exe
-          command: |
-            cinst docfx
+      environment:
+        github_access_token:
+          c1a3e6c00bf884b2fe6e640f40190b840fa350d6 
+        github_email:
+          aryashp4iitk@gmail.com
+      
+      steps:
+        - checkout
+        - run: systeminfo
+        - run:
+            name: install
+            shell: powershell.exe
+            command: |
+              cinst docfx
 
-      - run:
-          name: build_script
-          shell: powershell.exe
-          command: | 
-            dotnet restore
-            dotnet build --configuration Release
+        - run:
+            name: build_script
+            shell: powershell.exe
+            command: | 
+              dotnet restore
+              dotnet build --configuration Release
 
-      - run:    
-          name: deploy_script
-          shell: powershell.exe
-          command: |
-            git config --global credential.helper store
-            ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
-            git config --global user.email %github_email%
-            git config --global user.name "aryashp"
-            bash releaseDocs.sh
+        - run:    
+            name: deploy_script
+            shell: powershell.exe
+            command: |
+              git config --global credential.helper store
+              ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
+              git config --global user.email %github_email%
+              git config --global user.name "aryashp"
+              bash releaseDocs.sh
 
 workflows:
   version: 2
   test:
     jobs:
-      - test 
+      - test         
