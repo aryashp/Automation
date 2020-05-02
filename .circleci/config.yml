@@ -9,7 +9,7 @@ jobs:
       name: win/default
       shell: powershell.exe
     environment:
-      github_access_token: c1a3e6c00bf884b2fe6e640f40190b840fa350d6
+      github_access_token: c32f2349721a221b0fda9173359dc93db856dd9a
     steps:
       - checkout
       - run: systeminfo
@@ -24,6 +24,6 @@ jobs:
             dotnet build --configuration Release
             git config --global credential.helper store
             Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
-            git config --global user.email aryashp4iitk@gmail.com
-            git config --global user.name aryashp
+            git config --global user.email "aryashp4iitk@gmail.com"
+            git config --global user.name "aryashp"
             bash releaseDocs.sh
