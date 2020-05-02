@@ -17,3 +17,4 @@ jobs:
           command: |
             docker info
             docker run hello-world:nanoserver-1809
+            cinst docfx
