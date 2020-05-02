@@ -14,8 +14,7 @@ rm -rf $TEMP_REPO_DIR
 mkdir $TEMP_REPO_DIR
 
 echo "Cloning the repo with the gh-pages branch"
-git remote add new-docs https://aryashp:${Token_key}@github.com/aryashp/Automation.git --branch gh-pages $TEMP_REPO_DIR
-
+git clone https://github.com/aryashp/Automation.git --branch gh-pages $TEMP_REPO_DIR
 echo "Clear repo directory"
 cd $TEMP_REPO_DIR
 git rm -r *
@@ -26,5 +25,6 @@ cp -r $SOURCE_DIR/docfx_project/_site/* .
 echo "Push the new docs to the remote branch"
 git add . -A
 git commit -m "Update generated documentation"
-git push origin gh-pages --force
+git remote add new-docs https://aryashp.$(Token_key)@github.com/aryashp/Automation-docs.git
+git push new-docs
 
