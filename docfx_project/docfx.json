@@ -4,13 +4,16 @@
       "src": [
         {
           "files": [
-            "src/**.csproj"
+            "HelloDocfx/**.csproj"
           ],
           "exclude": [
-            "**/bin/**",
             "**/obj/**",
+            "**/bin/**",
             "_site/**"
-          ]
+          ],
+          "cwd": ".."
+        }
+      ]
         }
       ],
       "dest": "api"
