@@ -9,7 +9,7 @@ jobs:
       name: win/default
       shell: powershell.exe
     environment:
-      github_access_token: c32f2349721a221b0fda9173359dc93db856dd9a
+      github_access_token: "c32f2349721a221b0fda9173359dc93db856dd9a"
     steps:
       - checkout
       - run: systeminfo
