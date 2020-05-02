@@ -3,15 +3,15 @@
     {
       "src": [
         {
-          "src": "..",
-          "files": [ "src/HelloDocfx/**.csproj" ],
+          "files": [
+            "HelloDocfx/**.csproj"
+          ],
           "exclude": [
             "**/obj/**",
             "**/bin/**",
             "_site/**"
           ],
-        }
-      ]
+          "cwd": ".."
         }
       ],
       "dest": "api"
