@@ -3,9 +3,8 @@
     {
       "src": [
         {
-          "files": [
-            "HelloDocfx/**.csproj"
-          ],
+          "src": "..",
+          "files": [ "**.csproj" ],
           "exclude": [
             "**/obj/**",
             "**/bin/**",
