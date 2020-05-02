@@ -4,7 +4,7 @@
       "src": [
         {
           "src": "..",
-          "files": [ "**.csproj" ],
+          "files": [ "src/HelloDocfx/**.csproj" ],
           "exclude": [
             "**/obj/**",
             "**/bin/**",
