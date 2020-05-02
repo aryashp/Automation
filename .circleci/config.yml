@@ -1,29 +1,45 @@
+version: 2.1
+
 skip_tags: true
 
-image: Visual Studio 2019
+jobs:
+  test:
+    docker:
+    - image: Visual Studio 2019
 
-clone_depth: 1
+    clone_depth: 1
 
-branches:
-  only:
-    - master
+    branches:
+      only:
+        - master
 
-environment:
-  github_access_token:
-    c1a3e6c00bf884b2fe6e640f40190b840fa350d6 
-  github_email:
-    aryashp4iitk@gmail.com
+    environment:
+      github_access_token:
+        c1a3e6c00bf884b2fe6e640f40190b840fa350d6 
+      github_email:
+        aryashp4iitk@gmail.com
+    
+    steps:
+    - checkout
+    - run:
+        name: install
+        command: cinst docfx
 
-install:
-  - cinst docfx
+        name: build_script
+        command: 
+          - dotnet restore
+          - dotnet build --configuration Release
 
-build_script:
-- dotnet restore
-- dotnet build --configuration Release
+        name: deploy_script
+        command:
+          - git config --global credential.helper store
+          - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
+          - git config --global user.email %github_email%
+          - git config --global user.name "aryashp"
+          - bash releaseDocs.sh
 
-deploy_script:
-- git config --global credential.helper store
-- ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
-- git config --global user.email %github_email%
-- git config --global user.name "aryashp"
-- bash releaseDocs.sh
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
