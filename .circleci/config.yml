@@ -19,17 +19,21 @@ jobs:
     
     steps:
       - checkout
+      - run: systeminfo
       - run:
           name: install
+          shell: powershell.exe
           command: |
             cinst docfx
 
           name: build_script
+          shell: powershell.exe
           command: | 
             dotnet restore
             dotnet build --configuration Release
           
           name: deploy_script
+          shell: powershell.exe
           command: |
             git config --global credential.helper store
             ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
@@ -41,4 +45,4 @@ workflows:
   version: 2
   test:
     jobs:
-      - test         
+      - test
