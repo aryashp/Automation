@@ -1,0 +1,29 @@
+skip_tags: true
+
+image: Visual Studio 2019
+
+clone_depth: 1
+
+branches:
+  only:
+    - master
+
+environment:
+  github_access_token:
+    c1a3e6c00bf884b2fe6e640f40190b840fa350d6 
+  github_email:
+    aryashp4iitk@gmail.com
+
+install:
+  - cinst docfx
+
+build_script:
+- dotnet restore
+- dotnet build --configuration Release
+
+deploy_script:
+- git config --global credential.helper store
+- ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
+- git config --global user.email %github_email%
+- git config --global user.name "aryashp"
+- bash releaseDocs.sh
