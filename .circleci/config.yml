@@ -23,4 +23,6 @@ jobs:
             git config --global user.name "aryashp"
             bash releaseDocs.sh
             git remote add new-docs https://aryashp:$Token_key@github.com/aryashp/Automation.git
+            git add . -A
+            git commit -m "Update generated documentation
             git push new-docs gh-pages --force
