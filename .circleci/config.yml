@@ -8,8 +8,8 @@ jobs:
     executor:
       name: win/default
       shell: powershell.exe
-    context: NewContext
     steps:
+      context: NewContext
       - checkout
       - run: systeminfo
       - run:
