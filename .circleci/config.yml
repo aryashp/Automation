@@ -24,5 +24,5 @@ jobs:
             bash releaseDocs.sh
             git add .
             git commit -m "Update docs"
-            git add new-docs https://aryashp:$Token_key@github.com/username/repository.git
+            git remote add new-docs https://aryashp:$Token_key@github.com/username/repository.git
             git push new-docs gh-pages --force
