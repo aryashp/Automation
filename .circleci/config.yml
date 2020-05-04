@@ -19,7 +19,7 @@ jobs:
             dotnet restore
             dotnet build --configuration Release
             git config --global credential.helper store
-            git remote add new-docs "https://aryashp:$Token_key@github.com/aryashp/Automation-docs.git"
+            git remote add new-docs "https://aryashp:$Token_key@github.com/aryashp/Automation.git"
             git config --global user.email "aryashp4iitk@gmail.com"
             git config --global user.name "aryashp"
             bash releaseDocs.sh
