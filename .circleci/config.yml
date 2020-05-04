@@ -20,6 +20,6 @@ jobs:
             dotnet build --configuration Release
             git config --global credential.helper store
             Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:Token_key):x-oauth-basic@github.com`n"
-            git config --global user.email %github_email%
-            git config --global user.name "myusername"
+            git config --global user.email "aryashp4iitk@gmail.com"
+            git config --global user.name "aryashp"
             bash releaseDocs.sh
