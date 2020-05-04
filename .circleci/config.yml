@@ -9,7 +9,6 @@ jobs:
       name: win/default
       shell: powershell.exe
     steps:
-      context: NewContext
       - checkout
       - run: systeminfo
       - run:
